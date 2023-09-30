@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TrabalhoBimestral" parent="Theme.Material3.DayNight">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="titleTextColor">@color/white</item>
+        <item name="colorSurface">@color/blue</item>
+    </style>
+
+    <style name="Theme.TrabalhoBimestral" parent="Base.Theme.TrabalhoBimestral" />
+</resources>
