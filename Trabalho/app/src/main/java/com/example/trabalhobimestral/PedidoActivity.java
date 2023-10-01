@@ -76,6 +76,17 @@ public class PedidoActivity extends AppCompatActivity {
 
             }
         });
+        tvAddCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                for (int j = 0; j <  Controller.getInstance().retornarClientes().size(); j++) {
+                    if (tvAddCliente.getText().toString().equals(Controller.getInstance().retornarClientes().get(j).getNome())){
+                        posicaoCliente = j;
+                    }
+                }
+                tvErroCliente.setVisibility(View.GONE);
+            }
+        });
 
         posicaoProduto = -1;
         tvAddProduto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -106,6 +117,7 @@ public class PedidoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 salvaPedidoParcial();
                 abrirActivity(PagamentoActivity.class);
+                finish();
             }
         });
 
@@ -138,7 +150,7 @@ public class PedidoActivity extends AppCompatActivity {
         posicaoProduto = -1;
         edQtdProduto.setText(null);
         tvValorUnitario.setText(null);
-        //tvAddProduto.setText(null);
+        tvAddProduto.setText(null);
         tvAddProduto.requestFocus();
     }
 
@@ -152,8 +164,13 @@ public class PedidoActivity extends AppCompatActivity {
             return;
         }
         Pedido pedido = new Pedido();
+        ArrayList<ProdutoPedido> listaProdutoPedido = new ArrayList<>();
+        for (int i = 0; i < Controller.getInstance().retornarProdutosPedido().size(); i++) {
+            ProdutoPedido produtoPedido = Controller.getInstance().retornarProdutosPedido().get(i);
+            listaProdutoPedido.add(produtoPedido);
+        }
         pedido.setCliente(Controller.getInstance().retornarClientes().get(posicaoCliente));
-        pedido.setProdutoPedidos(Controller.getInstance().retornarProdutosPedido());
+        pedido.setProdutoPedidos(listaProdutoPedido);
 
         double valorTotalProdutos = 0;
         for (int i = 0; i <  Controller.getInstance().retornarProdutosPedido().size(); i++) {

@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btCadastrarCLiente;
     private Button btCadastrarProduto;
     private Button btCadastrarPedido;
+    private Button btVisualizarPedido;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         btCadastrarCLiente = findViewById(R.id.btCadastrarCliente);
         btCadastrarProduto = findViewById(R.id.btCadastrarProduto);
         btCadastrarPedido = findViewById(R.id.btCadastrarPedido);
+        btVisualizarPedido = findViewById(R.id.btVisualizarPedido);
+
         btCadastrarCLiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,8 +41,14 @@ public class MainActivity extends AppCompatActivity {
                 abrirActivity(PedidoActivity.class);
             }
         });
-    }
 
+        btVisualizarPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirActivity(VisualizarPedidoActivity.class);
+            }
+        });
+    }
     private void abrirActivity(Class<?> activity) {
         Intent intent = new Intent(MainActivity.this, activity);
         startActivity(intent);
